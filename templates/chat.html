@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One-to-One Chat</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .chat-card {
+            background: white;
+            width: 90%;
+            max-width: 760px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            overflow: hidden;
+        }
+        .chat-header {
+            background: #2563eb;
+            color: white;
+            padding: 16px 20px;
+        }
+        .chat-users {
+            display: flex;
+            gap: 12px;
+            padding: 16px 20px;
+            background: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .user-pill {
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: #dbeafe;
+            color: #1d4ed8;
+            font-weight: 600;
+        }
+        .messages {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .message {
+            max-width: 70%;
+            padding: 12px 14px;
+            border-radius: 10px;
+            line-height: 1.5;
+        }
+        .mine {
+            background: #dcfce7;
+            align-self: flex-end;
+        }
+        .other {
+            background: #e2e8f0;
+            align-self: flex-start;
+        }
+        .empty {
+            color: #64748b;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-card">
+        <div class="chat-header">
+            <h2>One-to-One Chat</h2>
+            <p>Private conversation between two people</p>
+        </div>
+
+        <div class="chat-users">
+            {% for user in users %}
+                <div class="user-pill">{{ user.username }}</div>
+            {% empty %}
+                <div class="empty">No users found in the database yet.</div>
+            {% endfor %}
+        </div>
+
+        <div class="messages">
+            <div class="message other">Hello! How are you today?</div>
+            <div class="message mine">I’m doing great. Ready to chat?</div>
+            <div class="message other">Absolutely — this is a private one-to-one conversation.</div>
+        </div>
+    </div>
+</body>
+</html>
