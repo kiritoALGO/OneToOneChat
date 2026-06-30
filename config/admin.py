@@ -3,6 +3,8 @@ from django.contrib import admin
 from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin
 
+from .models import Message
+
 User = get_user_model()
 
 
@@ -28,6 +30,14 @@ class PlainTextUserAdmin(UserAdmin):
                 widget=forms.TextInput(attrs={'readonly': 'readonly'}),
             )
         return form
+
+
+@admin.register(Message)
+class MessageAdmin(admin.ModelAdmin):
+    list_display = ('sender', 'receiver', 'content', 'created_at')
+    list_filter = ('sender', 'receiver', 'created_at')
+    search_fields = ('content', 'sender__username', 'receiver__username')
+    ordering = ('-created_at',)
 
 
 admin.site.unregister(User)
