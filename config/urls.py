@@ -17,9 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from .views import one_to_one_chat
+from .views import login_page, logout_user, one_to_one_chat, poll_messages, send_message
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', one_to_one_chat, name='one_to_one_chat'),
+    path('', login_page, name='login'),
+    path('chat/', one_to_one_chat, name='one_to_one_chat'),
+    path('logout/', logout_user, name='logout'),
+    path('send/', send_message, name='send_message'),
+    path('poll/', poll_messages, name='poll_messages'),
 ]
